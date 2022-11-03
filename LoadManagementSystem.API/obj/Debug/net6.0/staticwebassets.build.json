@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "nWu0Ejcvc15bLD0CFXNLc5dWh/Wer+rIcOg6bdlgNJk=",
+  "Source": "LoadManagementSystem.API",
+  "BasePath": "_content/LoadManagementSystem.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
