@@ -3,12 +3,12 @@
 ################################################################################
 
 /.vs/
-/LoadManagementSystem.API/obj/
-/LoadManagementSystem.Data/obj/
-/LoadManagementSystem.Services/obj/
-/LoadManagementSystem.Models/obj/
-/LoadManagementSystem.API/bin/
-/LoadManagementSystem.Data/bin/
-/LoadManagementSystem.Services/bin/
-/LoadManagementSystem.Models/bin/
+/LoanManagementSystem.API/obj/
+/LoanManagementSystem.Data/obj/
+/LoanManagementSystem.Services/obj/
+/LoanManagementSystem.Models/obj/
+/LoanManagementSystem.API/bin/
+/LoanManagementSystem.Data/bin/
+/LoanManagementSystem.Services/bin/
+/LoanManagementSystem.Models/bin/
 
