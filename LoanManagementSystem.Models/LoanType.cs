@@ -2,7 +2,7 @@
 
 namespace Loan_Management_System.Models
 {
-    public class Loans
+    public class LoanType
     {
         [Key]
         public string Type { get; set; }

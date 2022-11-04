@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem.API\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
+      "projectUniqueName": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
       "projectName": "LoanManagementSystem.Data",
-      "projectPath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem.API\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
+      "projectPath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem.API\\LoanManagementSystem.Data\\obj\\",
+      "outputPath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,0 +1,12 @@
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\bin\Debug\net6.0\LoanManagementSystem.Models.deps.json
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\bin\Debug\net6.0\LoanManagementSystem.Models.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\bin\Debug\net6.0\LoanManagementSystem.Models.pdb
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\LoanManagementSystem.Models.csproj.AssemblyReference.cache
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\LoanManagementSystem.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\LoanManagementSystem.Models.AssemblyInfoInputs.cache
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\LoanManagementSystem.Models.AssemblyInfo.cs
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\LoanManagementSystem.Models.csproj.CoreCompileInputs.cache
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\LoanManagementSystem.Models.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\refint\LoanManagementSystem.Models.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\LoanManagementSystem.Models.pdb
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Models\obj\Debug\net6.0\ref\LoanManagementSystem.Models.dll

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using LoanManagementSystem.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Loan_Management_System.Models
@@ -9,8 +10,13 @@ namespace Loan_Management_System.Models
         public int Id { get; set; }
 
         [Required]
-        public string Amount { get; set; }
+        public int Amount { get; set; }
 
-        public string CustomerID { get; set; }
+        public int CustomerID { get; set; }
+
+        public LoanType LoanType { get; set; }
+        public List<EmiPayments> EmiPayments { get; set; }
+
+        public BankDetails BankDetails { get; set; }
     }
 }
