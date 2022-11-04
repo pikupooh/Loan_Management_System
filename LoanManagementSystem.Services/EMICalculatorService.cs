@@ -1,8 +1,15 @@
-﻿namespace LoanManagementSystem.Services
+﻿using LoanManagementSystem.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LoanManagementSystem.Services
 {
     public class EMICalculatorService
     {
-        public int Calculate ()
+        public float Calculate ()
         {
             return 0;
         }

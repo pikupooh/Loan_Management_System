@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1ySBlD3wb2St2TQpJc4Y0EVtJmahd3mvqpD4j7W/aTzBQV0G505/fNQQXYCzYT5FKGJFXee5VVpyB3vZAFx+EQ==",
+  "dgSpecHash": "/ITg5T4QOvDvoyH25ujUzFmU9QfimnkNjYJThJ5V4ggFF+UxxKTo/jUS5ECF6Y7RQ4WFXRxD+42iEhnEhfgWqg==",
   "success": true,
-  "projectFilePath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Services\\LoanManagementSystem.Services.csproj",
+  "projectFilePath": "C:\\Users\\kittu\\Desktop\\Loan_Management_System\\LoanManagementSystem.Services\\LoanManagementSystem.Services.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Services\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
