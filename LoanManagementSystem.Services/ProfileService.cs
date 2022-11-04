@@ -1,4 +1,5 @@
-﻿using LoanManagementSystem.Models;
+﻿using LoanManagementSystem.Data;
+using LoanManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,15 @@ namespace LoanManagementSystem.Services
 {
     public class ProfileService
     {
-        public Profile GetProfileById(int id)
+        LMSContext _dbcontext = new LMSContext();
+        public CustomerInfo GetProfileById(int id)
         {
             return null;
         }
 
-        public List<Profile> GetAllProfile()
+        public List<CustomerInfo> GetAllProfile()
         {
-            return null;
+            return _dbcontext.CustomerInfos.ToList();
         }
     }
 }

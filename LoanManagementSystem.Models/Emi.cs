@@ -1,22 +1,28 @@
 ﻿using LoanManagementSystem.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Collections.Generic;
 
+#nullable disable
 namespace LoanManagementSystem.Models
 {
-    public class Emi
+    public partial class Emi
     {
+        public Emi()
+        {
+            Emipayments = new HashSet<Emipayment>();
+        }
+
         [Key]
-        public int Id { get; set; }
+        public int Emiid { get; set; }
 
         [Required]
-        public int Amount { get; set; }
+        public decimal? Amount { get; set; }
+        public int? Custid { get; set; }
+        public string LoanType { get; set; }
 
-        public int CustomerID { get; set; }
-
-        public LoanType LoanType { get; set; }
-        public List<EmiPayments> EmiPayments { get; set; }
-
-        public BankDetails BankDetails { get; set; }
+        public virtual CustomerInfo Cust { get; set; }
+        public virtual ICollection<Emipayment> Emipayments { get; set; }
     }
 }

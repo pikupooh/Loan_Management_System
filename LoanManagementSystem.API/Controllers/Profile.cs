@@ -31,8 +31,8 @@ namespace LoadManagementSystem.API
         [HttpGet("getAllProfiles")]
         public IActionResult GetAllProfiles()
         {
-            List<Profile> profileList = profileService.GetAllProfile();
-            return Ok();
+            List<CustomerInfo> profileList = profileService.GetAllProfile();
+            return Ok(profileList);
         }
     }
 }

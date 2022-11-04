@@ -1,17 +1,16 @@
 ﻿using LoanManagementSystem.Models;
 using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
 
+#nullable disable
 namespace LoanManagementSystem.Models
 {
-    public class LoanApplication
+    public partial class LoanApplication
     {
-        [Key]
-        public int Id { get; set; }
-
-        public string Type { get; set; }
-
-        public string CustomerID { get; set; }
-
-        public BankDetails BankDetails { get; set; }
+        public int AppId { get; set; }
+        public string LoanType { get; set; }
+        public int? Custid { get; set; }
+        public virtual CustomerInfo Cust { get; set; }
     }
 }

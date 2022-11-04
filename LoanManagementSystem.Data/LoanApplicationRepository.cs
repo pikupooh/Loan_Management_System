@@ -2,7 +2,7 @@
 
 namespace LoanManagementSystem.Data
 {
-    public class LoanApplicationData
+    public class LoanApplicationRepository
     {
         public LoanApplication AddApplication()
         {

@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
 
+#nullable disable
 namespace LoanManagementSystem.Models
 {
-    public class LoanType
+    public partial class LoanType
     {
-        [Key]
-        public string Type { get; set; }
-
-        [Required]
+        public string LoanType1 { get; set; }
         public string InterestRate { get; set; }
     }
 }

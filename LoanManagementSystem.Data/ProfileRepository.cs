@@ -9,12 +9,12 @@ namespace LoanManagementSystem.Data
 {
     public class ProfileRepository
     {
-        public List<Profile> GetAllProfile()
+        public List<Models.CustomerInfo> GetAllProfile()
         {
             return null;
         }
 
-        public Profile GetProfileById(int id)
+        public Models.CustomerInfo GetProfileById(int id)
         {
             return null;
         }
