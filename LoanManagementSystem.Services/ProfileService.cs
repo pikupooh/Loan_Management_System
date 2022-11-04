@@ -10,7 +10,7 @@ namespace LoanManagementSystem.Services
 {
     public class ProfileService
     {
-        LMSContext _dbcontext = new LMSContext();
+        ProfileRepository _repository = new ProfileRepository();
         public CustomerInfo GetProfileById(int id)
         {
             return null;
@@ -18,7 +18,7 @@ namespace LoanManagementSystem.Services
 
         public List<CustomerInfo> GetAllProfile()
         {
-            return _dbcontext.CustomerInfos.ToList();
+            return _repository.GetAllProfile();
         }
     }
 }

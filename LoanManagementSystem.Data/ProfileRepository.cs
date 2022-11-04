@@ -9,9 +9,11 @@ namespace LoanManagementSystem.Data
 {
     public class ProfileRepository
     {
+
+        LMSContext _dbcontext = new LMSContext();
         public List<Models.CustomerInfo> GetAllProfile()
         {
-            return null;
+            return _dbcontext.CustomerInfos.ToList();
         }
 
         public Models.CustomerInfo GetProfileById(int id)
