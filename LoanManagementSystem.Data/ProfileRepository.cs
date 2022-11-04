@@ -18,7 +18,7 @@ namespace LoanManagementSystem.Data
 
         public Models.CustomerInfo GetProfileById(int id)
         {
-            return null;
+            return _dbcontext.CustomerInfos.Find(id);
         }
     }
 }

@@ -19,13 +19,13 @@ namespace LoadManagementSystem.API
         [HttpGet("{id}")]
         public IActionResult Get([FromRoute] int id)
         {
-            profileService.GetProfileById(id);
+            
             if(profileService == null)
             {
                 return BadRequest();
             }
 
-            return Ok();
+            return Ok(profileService.GetProfileById(id));
         }
 
         [HttpGet("getAllProfiles")]

@@ -13,7 +13,7 @@ namespace LoanManagementSystem.Services
         ProfileRepository _repository = new ProfileRepository();
         public CustomerInfo GetProfileById(int id)
         {
-            return null;
+            return _repository.GetProfileById(id);
         }
 
         public List<CustomerInfo> GetAllProfile()
