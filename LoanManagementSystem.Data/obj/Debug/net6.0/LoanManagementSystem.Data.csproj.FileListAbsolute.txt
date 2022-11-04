@@ -10,3 +10,6 @@ D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Data\obj\Debug\
 D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Data\obj\Debug\net6.0\refint\LoanManagementSystem.Data.dll
 D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Data\obj\Debug\net6.0\LoanManagementSystem.Data.pdb
 D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Data\obj\Debug\net6.0\ref\LoanManagementSystem.Data.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Data\bin\Debug\net6.0\LoanManagementSystem.Models.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Data\bin\Debug\net6.0\LoanManagementSystem.Models.pdb
+D:\WF\Bootcamp\project\LoadManagementSystem\LoanManagementSystem.Data\obj\Debug\net6.0\LoanManagementSystem.Data.csproj.CopyComplete

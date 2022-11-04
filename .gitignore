@@ -3,3 +3,12 @@
 ################################################################################
 
 /.vs
+/LoadManagementSystem.API/obj
+/LoadManagementSystem.Data/obj
+/LoadManagementSystem.Services/obj
+/LoadManagementSystem.Models/obj
+/LoadManagementSystem.API/bin
+/LoadManagementSystem.Data/bin
+/LoadManagementSystem.Services/bin
+/LoadManagementSystem.Models/bin
+

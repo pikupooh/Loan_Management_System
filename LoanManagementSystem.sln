@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadManagementSystem.API", "LoadManagementSystem.API\LoadManagementSystem.API.csproj", "{87993C5F-D1A3-47AB-AABE-44B7A0B23994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanManagementSystem.API", "LoadManagementSystem.API\LoanManagementSystem.API.csproj", "{87993C5F-D1A3-47AB-AABE-44B7A0B23994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanManagementSystem.Models", "LoanManagementSystem.Models\LoanManagementSystem.Models.csproj", "{F351298C-7572-429C-ADAB-CCBFCB03E880}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanManagementSystem.Models", "LoanManagementSystem.Models\LoanManagementSystem.Models.csproj", "{F351298C-7572-429C-ADAB-CCBFCB03E880}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanManagementSystem.Data", "LoanManagementSystem.Data\LoanManagementSystem.Data.csproj", "{14D880AE-E9CA-4B94-AE76-848FFF3F8EEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanManagementSystem.Data", "LoanManagementSystem.Data\LoanManagementSystem.Data.csproj", "{14D880AE-E9CA-4B94-AE76-848FFF3F8EEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoanManagementSystem.Services", "LoanManagementSystem.Services\LoanManagementSystem.Services.csproj", "{C9A745F7-5A4A-490B-B955-F84F3EF277A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoanManagementSystem.Services", "LoanManagementSystem.Services\LoanManagementSystem.Services.csproj", "{C9A745F7-5A4A-490B-B955-F84F3EF277A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

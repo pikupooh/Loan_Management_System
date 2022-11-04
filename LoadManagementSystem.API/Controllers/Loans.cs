@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LoadManagementSystem.API.Controllers
+namespace LoadManagementSystem.API
 {
     [Route("api/[controller]")]
     [ApiController]

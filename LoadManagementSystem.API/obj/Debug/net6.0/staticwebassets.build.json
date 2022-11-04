@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "nWu0Ejcvc15bLD0CFXNLc5dWh/Wer+rIcOg6bdlgNJk=",
-  "Source": "LoadManagementSystem.API",
-  "BasePath": "_content/LoadManagementSystem.API",
+  "Hash": "7aJu/YBNg6SNBrW2t7ICYE+EEg2VMp7Rykg1/a/UAJg=",
+  "Source": "LoanManagementSystem.API",
+  "BasePath": "_content/LoanManagementSystem.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
