@@ -1,8 +1,12 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "1ySBlD3wb2St2TQpJc4Y0EVtJmahd3mvqpD4j7W/aTzBQV0G505/fNQQXYCzYT5FKGJFXee5VVpyB3vZAFx+EQ==",
+=======
+  "dgSpecHash": "tM6p4t1bOaEn3szSsOp9ftxgYnKD4launCr9jtD9sY2ndrqQgwz7Ak9vjqyxXhtY2g5sTQ5ptpS6WHVQ7SZLQg==",
+>>>>>>> 589fb29308e42e31b0f700b44329951438f490bc
   "success": true,
-  "projectFilePath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Services\\LoanManagementSystem.Services.csproj",
+  "projectFilePath": "C:\\Users\\kittu\\Desktop\\Loan_Management_System\\LoanManagementSystem.Services\\LoanManagementSystem.Services.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
