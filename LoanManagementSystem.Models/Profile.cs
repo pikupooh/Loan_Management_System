@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace Loan_Management_System.Models
+namespace LoanManagementSystem.Models
 {
     public class Profile
     {

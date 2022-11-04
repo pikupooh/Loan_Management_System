@@ -52,3 +52,7 @@ D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\obj\Debug\n
 D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\obj\Debug\net6.0\LoadManagementSystem.API.pdb
 D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\obj\Debug\net6.0\LoadManagementSystem.API.genruntimeconfig.cache
 D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\obj\Debug\net6.0\ref\LoadManagementSystem.API.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\bin\Debug\net6.0\LoanManagementSystem.Models.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\bin\Debug\net6.0\LoanManagementSystem.Services.dll
+D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\bin\Debug\net6.0\LoanManagementSystem.Models.pdb
+D:\WF\Bootcamp\project\LoadManagementSystem\LoadManagementSystem.API\bin\Debug\net6.0\LoanManagementSystem.Services.pdb

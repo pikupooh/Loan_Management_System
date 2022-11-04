@@ -1,4 +1,4 @@
-﻿using Loan_Management_System.Models;
+﻿using LoanManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +24,9 @@ namespace LoanManagementSystem.Services
             return null;
         }
 
+        public LoanApplication SubmitApplication(int id, string loanTypeName)
+        {
+            return null;
+        }
     }
 }

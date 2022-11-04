@@ -1,23 +1,37 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LoanManagementSystem.Models;
+using LoanManagementSystem.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace LoadManagementSystem.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Profile : ControllerBase
+    public class ProfileController : ControllerBase
     {
+        ProfileService profileService;
+        public ProfileController()
+        {
+            profileService = new ProfileService();
+        }
+
         [HttpGet("{id}")]
         public IActionResult Get([FromRoute] int id)
         {
-            System.Diagnostics.Debug.WriteLine(id);
+            profileService.GetProfileById(id);
+            if(profileService == null)
+            {
+                return BadRequest();
+            }
+
             return Ok();
         }
 
         [HttpGet("getAllProfiles")]
         public IActionResult GetAllProfiles()
         {
-            System.Diagnostics.Debug.WriteLine("get all profiles");
+            List<Profile> profileList = profileService.GetAllProfile();
             return Ok();
         }
     }

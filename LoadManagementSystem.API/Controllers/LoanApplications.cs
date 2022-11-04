@@ -1,9 +1,9 @@
-﻿using Loan_Management_System.Models;
+﻿using LoanManagementSystem.Models;
 using LoanManagementSystem.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LoadManagementSystem.API.Controllers
+namespace LoadManagementSystem.API
 {
     [Route("api/[controller]")]
     [ApiController]

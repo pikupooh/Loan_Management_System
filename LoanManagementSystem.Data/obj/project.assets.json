@@ -8,23 +8,23 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\kittu\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kittu\\Desktop\\Loan_Management_System\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
+      "projectUniqueName": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
       "projectName": "LoanManagementSystem.Data",
-      "projectPath": "C:\\Users\\kittu\\Desktop\\Loan_Management_System\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
-      "packagesPath": "C:\\Users\\kittu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kittu\\Desktop\\Loan_Management_System\\LoanManagementSystem.Data\\obj\\",
+      "projectPath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Data\\LoanManagementSystem.Data.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\WF\\Bootcamp\\project\\LoadManagementSystem\\LoanManagementSystem.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\kittu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

@@ -1,4 +1,4 @@
-﻿using Loan_Management_System.Models;
+﻿using LoanManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

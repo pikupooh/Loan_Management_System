@@ -1,4 +1,4 @@
-namespace Loan_Management_System.Models
+namespace LoanManagementSystem.Models
 {
     public class ErrorViewModel
     {
