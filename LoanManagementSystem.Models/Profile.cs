@@ -21,6 +21,6 @@ namespace Loan_Management_System.Models
         public string Address { get; set; }
 
         public List<Emi> Emis { get; set; }
-        public List<LoanApplications> LoanApplications { get; set; }
+        public List<LoanApplication> LoanApplications { get; set; }
     }
 }

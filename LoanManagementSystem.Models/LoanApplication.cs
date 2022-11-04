@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Loan_Management_System.Models
 {
-    public class LoanApplications
+    public class LoanApplication
     {
         [Key]
         public int Id { get; set; }
