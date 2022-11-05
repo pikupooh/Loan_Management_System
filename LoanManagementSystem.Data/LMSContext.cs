@@ -21,7 +21,7 @@ namespace LoanManagementSystem.Data
         public virtual DbSet<BankDetail> BankDetails { get; set; }
         public virtual DbSet<CustomerInfo> CustomerInfos { get; set; }
         public virtual DbSet<Emi> Emis { get; set; }
-        public virtual DbSet<Emipayment> Emipayments { get; set; }
+        public virtual DbSet<EmiPayment> Emipayments { get; set; }
         public virtual DbSet<LoanApplication> LoanApplications { get; set; }
         public virtual DbSet<LoanType> LoanTypes { get; set; }
 
@@ -95,11 +95,10 @@ namespace LoanManagementSystem.Data
 
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Emis)
-                    .HasForeignKey(d => d.Custid)
                     .HasConstraintName("FK__EMI__Custid__2B3F6F97");
             });
 
-            modelBuilder.Entity<Emipayment>(entity =>
+            modelBuilder.Entity<EmiPayment>(entity =>
             {
                 entity.ToTable("EMIPayments");
 
@@ -107,19 +106,14 @@ namespace LoanManagementSystem.Data
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("EMIAmount");
 
-                entity.Property(e => e.Emiid).HasColumnName("EMIId");
-
                 entity.Property(e => e.Fine).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.IssueDate).HasColumnType("datetime");
 
-                entity.Property(e => e.LastPaid).HasColumnType("decimal(18, 0)");
-
-                entity.Property(e => e.ReceiptDate).HasColumnType("datetime");
+                entity.Property(e => e.PiadOn).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Emi)
                     .WithMany(p => p.Emipayments)
-                    .HasForeignKey(d => d.Emiid)
                     .HasConstraintName("FK__EMIPaymen__EMIId__2E1BDC42");
             });
 
@@ -136,18 +130,17 @@ namespace LoanManagementSystem.Data
 
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.LoanApplications)
-                    .HasForeignKey(d => d.Custid)
                     .HasConstraintName("FK__LoanAppli__Custi__286302EC");
             });
 
             modelBuilder.Entity<LoanType>(entity =>
             {
-                entity.HasKey(e => e.LoanType1)
+                entity.HasKey(e => e.LoanTypeName)
                     .HasName("PK__LoanType__3C62B94646D5B118");
 
                 entity.ToTable("LoanType");
 
-                entity.Property(e => e.LoanType1)
+                entity.Property(e => e.LoanTypeName)
                     .HasMaxLength(25)
                     .IsUnicode(false)
                     .HasColumnName("LoanType");

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace LoadManagementSystem.API
+namespace LoanManagementSystem.API
 {
     [Route("api/[controller]")]
     [ApiController]

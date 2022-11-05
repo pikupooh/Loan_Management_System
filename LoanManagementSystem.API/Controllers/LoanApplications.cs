@@ -1,9 +1,10 @@
-﻿using LoanManagementSystem.Models;
+﻿using LoanManagementSystem.Data;
+using LoanManagementSystem.Models;
 using LoanManagementSystem.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LoadManagementSystem.API
+namespace LoanManagementSystem.API
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -29,7 +30,7 @@ namespace LoadManagementSystem.API
         [HttpGet("getApplicationByCustomerId/{customerId}")]
         public IActionResult GetApllicationByCustomerId([FromRoute] int customerId)
         {
-            LoanApplication application = loanApplicationsService.GetApllicationByCustomerId(customerId);
+            List<LoanApplication> application = loanApplicationsService.GetApllicationByCustomerId(customerId);
             if(application == null)
             {
                 return NotFound();
@@ -50,10 +51,10 @@ namespace LoadManagementSystem.API
             return Ok(application);
         }
 
-        [HttpPost("submitLoanApplication/{LoanTypeName}")]
-        public IActionResult SubmitLoanApplication([FromBody] int Id, [FromQuery] string LoanTypeName)
+        [HttpPost("submitLoanApplication")]
+        public IActionResult SubmitLoanApplication(int CustomerId, string LoanType, int LoanAmount)
         {
-            LoanApplication application = loanApplicationsService.SubmitApplication(Id, LoanTypeName);
+            LoanApplication application = loanApplicationsService.SubmitApplication(CustomerId, LoanType, LoanAmount);
 
             if (application == null)
             {
@@ -61,6 +62,6 @@ namespace LoadManagementSystem.API
             }
             return Ok(application);
         }
-        
+
     }
 }

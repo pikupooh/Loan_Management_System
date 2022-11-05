@@ -1,4 +1,5 @@
-﻿using LoanManagementSystem.Models;
+﻿using LoanManagementSystem.Data;
+using LoanManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,50 @@ namespace LoanManagementSystem.Services
 {
     public class LoanApplicationsService
     {
+        private LoanApplicationRepository loanApplicationRepository;
+
+        public LoanApplicationsService()
+        {
+            loanApplicationRepository = new LoanApplicationRepository();
+        }
         public List<LoanApplication> GetAllApllications()
         {
-            return null;
+            List<LoanApplication> loanApplications = loanApplicationRepository.GetApplication();
+            return loanApplications;
         }
 
-        public LoanApplication GetApllicationByCustomerId(int Id)
+        public List<LoanApplication> GetApllicationByCustomerId(int Id)
         {
-            return null;
+            List<LoanApplication> applications = loanApplicationRepository.GetApplicationsByCustomerId(Id);
+            return applications;
         }
 
         public LoanApplication GetApllicationByApplicationId(int Id)
         {
-            return null;
+            LoanApplication application = loanApplicationRepository.GetApplicationById(Id);
+            return application;
         }
 
-        public LoanApplication SubmitApplication(int id, string loanTypeName)
+        public LoanApplication SubmitApplication(int customerId, string loanTypeName, int loanAmount)
         {
-            return null;
+            ProfileService profileService = new ProfileService();
+            CustomerInfo customerInfo = profileService.GetProfileById(customerId);
+            
+            if(customerInfo == null)
+            {
+                return null;
+            }
+
+            LoanTypeService loanTypeService = new LoanTypeService();
+            LoanType loanType = loanTypeService.GetLoanTypeByName(loanTypeName);
+
+            if(loanType == null)
+            {
+                return null;
+            }
+
+            LoanApplication loanApplication = LoanApplicationRepository.AddLoanApplication(customerInfo, loanType, loanAmount);
+            return loanApplication;
         }
     }
 }

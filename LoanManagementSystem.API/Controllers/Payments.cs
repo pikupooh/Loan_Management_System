@@ -1,30 +1,71 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LoanManagementSystem.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using LoanManagementSystem.Services;
 
-namespace LoadManagementSystem.API
+namespace LoanManagementSystem.API
 {
     [Route("api/[controller]")]
     [ApiController]
     public class Payments : ControllerBase
     {
+        private EmiPaymentService emiPaymentService;
+
         [HttpGet("getAllPayments")]
         public IActionResult GetAllPayments()
         {
-            return Ok();
+            List<EmiPayment> emiPayments = emiPaymentService.GetAllPayments();
+            if (emiPayments.Any())
+            {
+                return Ok(emiPayments);
+            }
+            return NotFound("No payments");
         }
 
         [HttpGet("getPaymentsByCustomerId/{customerId}")]
         public IActionResult GetPaymentsByCustomerId([FromRoute] int customerId)
         {
-            return Ok();
+            List<EmiPayment> emiPayments = emiPaymentService.GetPaymentsByCustomerId(customerId);
+            if (emiPayments.Any())
+            {
+                return Ok(emiPayments);
+            }
+            return NotFound("No payments");
         }
 
-        [HttpGet("getPaymentsByPaymentId/{applicationId}")]
-        public IActionResult GetPaymentsByPaymentId([FromRoute] int applicationId)
+        [HttpGet("getPaymentByPaymentId/{paymentId}")]
+        public IActionResult GetPaymentByPaymentId([FromRoute] int paymentId)
         {
-            return Ok();
+            EmiPayment emiPayment = emiPaymentService.GetPaymentByPaymentId(paymentId);
+            if (emiPayment != null)
+            {
+                return Ok(emiPayment);
+            }
+            return NotFound("No payments");
         }
 
+        [HttpGet("getPaymentsByEmiId/{EmiId}")]
+        public IActionResult GetPaymentsByEmiId([FromRoute] int EmilId)
+        {
+            List<EmiPayment> emiPayment = emiPaymentService.GetPaymentsByEmiId(EmilId);
+            if (emiPayment.Any())
+            {
+                return Ok(emiPayment);
+            }
+            return NotFound("No payments");
+        }
+
+
+        [HttpPost("addPayment/{EmiId}")]
+        public IActionResult AddPayment([FromRoute] int EmiId, int AmountPaid)
+        {
+            EmiPayment emiPayment = emiPaymentService.AddPayment(EmiId, AmountPaid);
+            if(emiPayment != null)
+            {
+                return Ok(emiPayment);
+            }
+            return BadRequest("");
+        }
 
     }
 }

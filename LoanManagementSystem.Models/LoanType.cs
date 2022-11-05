@@ -7,7 +7,7 @@ namespace LoanManagementSystem.Models
 {
     public partial class LoanType
     {
-        public string LoanType1 { get; set; }
-        public string InterestRate { get; set; }
+        public string LoanTypeName { get; set; }
+        public float InterestRate { get; set; }
     }
 }

@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "LoadManagementSystem.API": {
+    "LoanManagementSystem.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

@@ -11,18 +11,26 @@ namespace LoanManagementSystem.Models
     {
         public Emi()
         {
-            Emipayments = new HashSet<Emipayment>();
+            Emipayments = new List<EmiPayment>();
+        }
+
+        public Emi(LoanApplication application)
+        {
+            LoanType = application.LoanType;
+            Cust = application.Cust;
+            Interest = application.LoanType.InterestRate;
+            Amount = application.Amount;
         }
 
         [Key]
         public int Emiid { get; set; }
 
         [Required]
-        public decimal? Amount { get; set; }
-        public int? Custid { get; set; }
-        public string LoanType { get; set; }
+        public int? Amount { get; set; }
+        public LoanType LoanType { get; set; }
+        public float Interest { get; set; }
 
         public virtual CustomerInfo Cust { get; set; }
-        public virtual ICollection<Emipayment> Emipayments { get; set; }
+        public virtual List<EmiPayment> Emipayments { get; set; }
     }
 }

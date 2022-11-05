@@ -1,34 +1,90 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LoanManagementSystem.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using LoanManagementSystem.Models;
 
-namespace LoadManagementSystem.API
+namespace LoanManagementSystem.API
 {
     [Route("api/[controller]")]
     [ApiController]
     public class Loans : ControllerBase
     {
+        private EmiService emiService;
+
+        public Loans()
+        {
+            emiService = new EmiService();
+        }
+
         [HttpGet("getAllLoans")]
         public IActionResult GetAllLoans()
         {
-            return Ok();
+            List<Emi> Loanslist = emiService.GetAllLoans();
+            if (Loanslist.Any())
+            {
+                return Ok(Loanslist);
+            }
+            return NotFound("No Loans Are Present");
         }
 
         [HttpGet("getLoanByLoanId/{LoanId}")]
         public IActionResult GetLoanByLoanId([FromRoute] int LoanId)
         {
-            return Ok();
+            Emi Loan = emiService.GetEmiById(LoanId);
+            if(Loan == null)
+            {
+                return BadRequest("Emi Id not valid");
+            }
+            return Ok(Loan);
         }
 
         [HttpGet("getLoanByCustomerId/{CutomerId}")]
         public IActionResult GetLoansByCustomerId([FromRoute] int CustomerId)
         {
-            return Ok();
+            List<Emi> Loans = emiService.GetEmisByCustomerId(CustomerId);
+
+            if (Loans.Any())
+            {
+                return Ok(Loans);
+                
+            }
+            return NotFound("No Loans Taken");
         }
 
-        [HttpGet("getLoanTypeDetails")]
-        public IActionResult LoanTypeDetails()
+        [HttpGet("getLoanTypeDetails/{name}")]
+        public IActionResult LoanTypeDetails(string name)
         {
-            return Ok();
+            LoanTypeService loanTypeService = new LoanTypeService();
+            LoanType loanType = loanTypeService.GetLoanTypeByName(name);
+            if(loanType == null)
+            {
+                return NotFound("{name} loan type not found");
+            }
+            return Ok(loanType);
+        }
+
+        [HttpPost("acceptLoanApplication/{applicationId}")]
+        public IActionResult AcceptLoanApplication(int applicationId)
+        {
+            Emi emi = emiService.AcceptLoanApplication(applicationId);
+            
+            if(emi == null)
+            {
+                return BadRequest("Application cannot be accepted");
+            }
+            return Ok(emi);
+        }
+
+        [HttpPost("declineLoanApplication/{applicationId}")]
+        public IActionResult DeclineLoanApplication(int applicationId)
+        {
+            bool declined = emiService.DeclineLoanApplication(applicationId);
+
+            if (declined == false)
+            {
+                return BadRequest("Cannot Decline Application");
+            }
+            return Ok(declined);
         }
 
     }

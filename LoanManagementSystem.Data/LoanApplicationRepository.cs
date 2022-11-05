@@ -1,22 +1,47 @@
 ﻿using LoanManagementSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LoanManagementSystem.Data
 {
     public class LoanApplicationRepository
     {
-        public LoanApplication AddApplication()
+        LMSContext context;
+        public LoanApplicationRepository()
         {
-            return null;
+        }
+
+        public static LoanApplication AddLoanApplication(CustomerInfo customerInfo, LoanType loanType, int loanAmount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptLoanApplication(int applicationId)
+        {
+            LoanApplication application = GetApplicationById(applicationId);
+            application.status = LoanStatus.ACCEPTED;
+            context.SaveChanges();
+        }
+
+        public void DeclineLoanApplication(int applicationId)
+        {
+            LoanApplication application = GetApplicationById(applicationId);
+            application.status = LoanStatus.DECLINED;
+            context.SaveChanges();
         }
 
         public List<LoanApplication> GetApplication()
         {
-            return null;
+            return context.LoanApplications.ToList();
         }
 
-        public LoanApplication GetApplicationById(int id, bool CustomerId = true)
+        public LoanApplication GetApplicationById(int Id)
         {
-            return null;
+            return context.LoanApplications.FirstOrDefault(application => application.AppId == Id);
+        }
+
+        public List<LoanApplication> GetApplicationsByCustomerId(int Id)
+        {
+            return context.LoanApplications.Include(application => application.Cust).ToList();
         }
     }
 }

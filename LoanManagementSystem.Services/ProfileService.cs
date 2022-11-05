@@ -10,15 +10,23 @@ namespace LoanManagementSystem.Services
 {
     public class ProfileService
     {
-        ProfileRepository _repository = new ProfileRepository();
+        private readonly ProfileService profileService;
+
+        public ProfileService()
+        {
+            profileService = new ProfileService();
+        }
+
         public CustomerInfo GetProfileById(int id)
         {
-            return _repository.GetProfileById(id);
+            CustomerInfo profile = profileService.GetProfileById(id);
+            return profile;
         }
 
         public List<CustomerInfo> GetAllProfile()
         {
-            return _repository.GetAllProfile();
+            List<CustomerInfo> profileList = profileService.GetAllProfile();
+            return profileList;
         }
     }
 }

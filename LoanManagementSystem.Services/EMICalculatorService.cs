@@ -9,9 +9,14 @@ namespace LoanManagementSystem.Services
 {
     public class EMICalculatorService
     {
-        public float Calculate ()
+        public float Calculate (int months, float amount, float rate)
         {
-            return 0;
+            float totalAmount = 0;
+            float emi;
+            float r = rate / (12 * 100);
+            emi = (amount * r * (float)Math.Pow(1 + r, months)) / (float)(Math.Pow(1 + r, months) - 1);
+            totalAmount = emi * months;
+            return totalAmount;
         }
     }
 }
