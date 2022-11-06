@@ -11,9 +11,14 @@ namespace LoanManagementSystem.Services
 {
     public class EmiService
     {
-        LMSContext context;
-        private readonly LoanApplicationRepository loanApplicationRepository;
+        private readonly LoanApplicationRepository? loanApplicationRepository;
+        private readonly EmiRepository _repository;
 
+        public EmiService()
+        {
+            _repository = new EmiRepository();
+        }
+        
         public Emi AcceptLoanApplication(int applicationId)
         {
             LoanApplication application = loanApplicationRepository.GetApplicationById(applicationId);
@@ -29,9 +34,9 @@ namespace LoanManagementSystem.Services
             
         }
 
-        public List<Emi> GetAllLoans()
+        public List<Emi>? GetAllLoans()
         {
-            List<Emi> emis = context.Emis.Include(emi => emi.Emipayments).Include(emi => emi.Cust).ToList();
+            List<Emi> emis = _repository.GetAllEMIs();
             if (emis.Any())
             {
                 return emis;
@@ -39,15 +44,15 @@ namespace LoanManagementSystem.Services
             return null;
         }
 
-        public Emi GetEmiById(int loanId)
+        public Emi GetEmiById(int emiId)
         {
-            Emi emi = context.Emis.Include(emi => emi.Emipayments).Include(emi => emi.Cust).First(emi => emi.Emiid == loanId);
+            Emi emi = _repository.GetEMIById(emiId);
             return emi;
         }
 
-        public List<Emi> GetEmisByCustomerId(int customerId)
+        public List<Emi>? GetEmisByCustomerId(int customerId)
         {
-            List<Emi> emis = context.Emis.Include(emi => emi.Emipayments).Include(emi => emi.Cust).Where(emi => emi.Cust.Custid == customerId).ToList();
+            List<Emi> emis = _repository.GetEMIByCustId(customerId);
             if (emis.Any())
             {
                 return emis;

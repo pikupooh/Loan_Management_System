@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace LoanManagementSystem.Data
 {
-    public class ProfileRepository
+    public class ProfileRepository:BaseRepository
     {
 
-        LMSContext _dbcontext = new LMSContext();
         public List<Models.CustomerInfo> GetAllProfile()
         {
             return _dbcontext.CustomerInfos.ToList();
         }
 
-        public Models.CustomerInfo GetProfileById(int id)
+        public Models.CustomerInfo? GetProfileById(int id)
         {
             return _dbcontext.CustomerInfos.Find(id);
         }

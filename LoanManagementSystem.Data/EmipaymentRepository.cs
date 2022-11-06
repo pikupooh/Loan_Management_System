@@ -5,31 +5,36 @@ using System.Collections.Generic;
 
 namespace LoanManagementSystem.Data
 {
-    public class EmiPaymentRepository
+    public class EmiPaymentRepository:BaseRepository
     {
         public EmiPayment AddPayment(Emi emi, int amountPaid)
         {
-            throw new NotImplementedException();
+            EmiPayment payment = new EmiPayment();
+            payment.Emi = emi;
+            payment.Emiamount = amountPaid;
+            _dbcontext.Add(payment);
+            _dbcontext.SaveChanges();
+            return payment;
         }
 
         public List<EmiPayment> GetAllPayments()
         {
-            throw new NotImplementedException();
+            return _dbcontext.Emipayments.ToList();
         }
 
         public List<EmiPayment> GetPaymentByEmiId(int emiId)
         {
-            throw new NotImplementedException();
+            return _dbcontext.Emipayments.Where(payment => payment.Emi.Emiid == emiId).ToList();
         }
 
-        public EmiPayment GetPaymentByPaymentId(int paymentId)
+        public EmiPayment? GetPaymentByEmiPaymentId(int paymentId)
         {
-            throw new NotImplementedException();
+            return _dbcontext.Emipayments.Find(paymentId);
         }
 
         public List<EmiPayment> GetPaymentsByCustomerId(int customerId)
         {
-            throw new NotImplementedException();
+            return _dbcontext.Emipayments.Where(emi => emi.Emi.Cust.Custid == customerId).ToList();
         }
        
     }

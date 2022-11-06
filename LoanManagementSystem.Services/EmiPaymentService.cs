@@ -31,7 +31,7 @@ namespace LoanManagementSystem.Services
 
         public EmiPayment GetPaymentByPaymentId(int paymentId)
         {
-            EmiPayment emiPayment = emiPaymentRepository.GetPaymentByPaymentId(paymentId);
+            EmiPayment emiPayment = emiPaymentRepository.GetPaymentByEmiPaymentId(paymentId);
             return emiPayment;
         }
 

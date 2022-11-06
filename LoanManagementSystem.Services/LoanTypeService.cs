@@ -1,4 +1,5 @@
-﻿using LoanManagementSystem.Models;
+﻿using LoanManagementSystem.Data;
+using LoanManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,15 @@ namespace LoanManagementSystem.Services
 {
     public class LoanTypeService
     {
+        LoanTypeRepository _repository = new LoanTypeRepository();
         public List<LoanType> GetAllLoanTypes()
         {
-            return null;
+            return _repository.GetAllLoanTypes();
         }
 
         public LoanType GetLoanTypeByName(string name)
         {
-            return null;
+            return _repository.GetLoanTypebyName(name);
         }
     }
 }

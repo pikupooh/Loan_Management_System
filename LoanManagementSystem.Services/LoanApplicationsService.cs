@@ -52,7 +52,7 @@ namespace LoanManagementSystem.Services
                 return null;
             }
 
-            LoanApplication loanApplication = LoanApplicationRepository.AddLoanApplication(customerInfo, loanType, loanAmount);
+            LoanApplication loanApplication = loanApplicationRepository.AddLoanApplication(customerInfo, loanType, loanAmount);
             return loanApplication;
         }
     }
