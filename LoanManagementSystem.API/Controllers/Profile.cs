@@ -19,13 +19,13 @@ namespace LoanManagementSystem.API
         [HttpGet("{id}")]
         public IActionResult Get([FromRoute] int id)
         {
-            
-            if(profileService == null)
+            CustomerInfo user = profileService.GetProfileById(id);
+            if (user == null)
             {
-                return BadRequest();
+                return NotFound("User Id not found");
             }
 
-            return Ok(profileService.GetProfileById(id));
+            return Ok(user);
         }
 
         [HttpGet("getAllProfiles")]

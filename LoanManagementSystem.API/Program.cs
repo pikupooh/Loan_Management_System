@@ -10,6 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/*
+builder.Services.AddDbContext<LMSContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly("LoanManagementSystem.API"));
+});
+*/
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

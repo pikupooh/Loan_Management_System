@@ -19,7 +19,7 @@ namespace LoanManagementSystem.API
         [HttpGet("getAllLoans")]
         public IActionResult GetAllLoans()
         {
-            List<Emi> Loanslist = emiService.GetAllLoans();
+            List<Emi>? Loanslist = emiService.GetAllLoans();
             if (Loanslist.Any())
             {
                 return Ok(Loanslist);
@@ -38,12 +38,12 @@ namespace LoanManagementSystem.API
             return Ok(Loan);
         }
 
-        [HttpGet("getLoanByCustomerId/{CutomerId}")]
+        [HttpGet("getLoanByCustomerId/{CustomerId}")]
         public IActionResult GetLoansByCustomerId([FromRoute] int CustomerId)
         {
             List<Emi> Loans = emiService.GetEmisByCustomerId(CustomerId);
 
-            if (Loans.Any())
+            if (Loans != null)
             {
                 return Ok(Loans);
                 
@@ -58,9 +58,21 @@ namespace LoanManagementSystem.API
             LoanType loanType = loanTypeService.GetLoanTypeByName(name);
             if(loanType == null)
             {
-                return NotFound("{name} loan type not found");
+                return NotFound($"{name} loan type not found");
             }
             return Ok(loanType);
+        }
+
+        [HttpGet("getAllLoanType")]
+        public IActionResult AllLoanType()
+        {
+            LoanTypeService loanTypeService = new LoanTypeService();
+            List<LoanType> loanTypes = loanTypeService.GetAllLoanTypes();
+            if (loanTypes == null)
+            {
+                return NotFound("{name} loan type not found");
+            }
+            return Ok(loanTypes);
         }
 
         [HttpPost("acceptLoanApplication/{applicationId}")]

@@ -11,7 +11,7 @@ namespace LoanManagementSystem.Models
     {
         public Emi()
         {
-            Emipayments = new List<EmiPayment>();
+            EmiPayments = new List<EmiPayment>();
         }
 
         public Emi(LoanApplication application)
@@ -20,17 +20,25 @@ namespace LoanManagementSystem.Models
             Cust = application.Cust;
             Interest = application.LoanType.InterestRate;
             Amount = application.Amount;
+            EmiCompleted = false;
         }
 
         [Key]
-        public int Emiid { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public int? Amount { get; set; }
         public LoanType LoanType { get; set; }
+        public int LoanTypeId { get; set; }
         public float Interest { get; set; }
 
         public virtual CustomerInfo Cust { get; set; }
-        public virtual List<EmiPayment> Emipayments { get; set; }
+        public int CustomerInfoId { get; set; }
+        public virtual List<EmiPayment> EmiPayments { get; set; }
+
+        public DateTime StartDate { get; set; }
+        public int Months { get; set; }
+
+        public bool EmiCompleted { get; set; }
     }
 }

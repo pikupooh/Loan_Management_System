@@ -33,17 +33,17 @@ namespace LoanManagementSystem.Data
 
         public List<LoanApplication> GetApplication()
         {
-            return _dbcontext.LoanApplications.ToList();
+            return _dbcontext.LoanApplications.Include(app => app.LoanType).ToList();
         }
 
         public LoanApplication? GetApplicationById(int Id)
         {
-            return _dbcontext.LoanApplications.FirstOrDefault(application => application.AppId == Id);
+            return _dbcontext.LoanApplications.Include(app => app.LoanType).FirstOrDefault(application => application.AppId == Id);
         }
 
         public List<LoanApplication> GetApplicationsByCustomerId(int Id)
         {
-            return _dbcontext.LoanApplications.Include(application => application.Cust).ToList();
+            return _dbcontext.LoanApplications.Where(app => app.CustomerInfoId == Id).Include(app => app.LoanType).ToList();
         }
     }
 }

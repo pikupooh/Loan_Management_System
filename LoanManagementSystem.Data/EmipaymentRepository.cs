@@ -11,7 +11,7 @@ namespace LoanManagementSystem.Data
         {
             EmiPayment payment = new EmiPayment();
             payment.Emi = emi;
-            payment.Emiamount = amountPaid;
+            payment.EmiAmount = amountPaid;
             _dbcontext.Add(payment);
             _dbcontext.SaveChanges();
             return payment;
@@ -24,18 +24,15 @@ namespace LoanManagementSystem.Data
 
         public List<EmiPayment> GetPaymentByEmiId(int emiId)
         {
-            return _dbcontext.Emipayments.Where(payment => payment.Emi.Emiid == emiId).ToList();
+            return _dbcontext.Emipayments.Where(payment => payment.Emi.Id == emiId).ToList();
         }
 
-        public EmiPayment? GetPaymentByEmiPaymentId(int paymentId)
+        public EmiPayment GetPaymentByEmiPaymentId(int paymentId)
         {
-            return _dbcontext.Emipayments.Find(paymentId);
+            return _dbcontext.Emipayments.FirstOrDefault(payment => payment.Id == paymentId);
         }
 
-        public List<EmiPayment> GetPaymentsByCustomerId(int customerId)
-        {
-            return _dbcontext.Emipayments.Where(emi => emi.Emi.Cust.Custid == customerId).ToList();
-        }
+        
        
     }
 }

@@ -37,27 +37,38 @@ namespace LoanManagementSystem.Services
         public List<Emi>? GetAllLoans()
         {
             List<Emi> emis = _repository.GetAllEMIs();
-            if (emis.Any())
+            if (emis.Count == 0)
             {
-                return emis;
+                return null;
             }
-            return null;
+
+            return emis;
         }
 
         public Emi GetEmiById(int emiId)
         {
             Emi emi = _repository.GetEMIById(emiId);
+
+            EmiPaymentService emiPaymentService = new EmiPaymentService();
+            List<EmiPayment> emiPayments = emiPaymentService.GetPaymentsByEmiId(emiId);
+
+            emi.EmiPayments = emiPayments;
             return emi;
         }
 
-        public List<Emi>? GetEmisByCustomerId(int customerId)
+        public List<Emi> GetEmisByCustomerId(int customerId)
         {
             List<Emi> emis = _repository.GetEMIByCustId(customerId);
-            if (emis.Any())
+
+            EmiPaymentService emiPaymentService = new EmiPaymentService();
+
+            foreach(Emi emi in emis)
             {
-                return emis;
+                List<EmiPayment> emiPayments = emiPaymentService.GetPaymentsByEmiId(emi.Id);
+                emi.EmiPayments = emiPayments;
             }
-            return null;
+
+            return emis;
         }
 
         public bool DeclineLoanApplication(int applicationId)

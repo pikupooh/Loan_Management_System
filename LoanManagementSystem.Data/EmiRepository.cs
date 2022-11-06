@@ -10,17 +10,17 @@ namespace LoanManagementSystem.Data
     {
         public List<Emi> GetAllEMIs()
         {
-            return _dbcontext.Emis.Include(emi => emi.Emipayments).Include(emi => emi.Cust).ToList();
+            return _dbcontext.Emis.Include(emi => emi.LoanType).ToList();
         }
 
         public Models.Emi GetEMIById(int id)
         {
-            return _dbcontext.Emis.Include(emi => emi.Emipayments).Include(emi => emi.Cust).First(emi => emi.Emiid == id);
+            return _dbcontext.Emis.Include(emi => emi.LoanType).FirstOrDefault(emi => emi.Id == id);
         }
 
         public List<Emi> GetEMIByCustId(int id)
         {
-            return _dbcontext.Emis.Include(emi => emi.Emipayments).Include(emi => emi.Cust).Where(emi => emi.Cust.Custid == id).ToList(); 
+            return _dbcontext.Emis.Include(emi => emi.LoanType).Where(emi => emi.Cust.Id == id).ToList(); 
         }
 
     }

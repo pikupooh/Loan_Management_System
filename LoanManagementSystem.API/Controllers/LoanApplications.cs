@@ -3,6 +3,7 @@ using LoanManagementSystem.Models;
 using LoanManagementSystem.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LoanManagementSystem.API
 {
@@ -17,9 +18,9 @@ namespace LoanManagementSystem.API
         }
 
         [HttpGet("getAllApplications")]
-        public IActionResult GetAllApllications()
+        public IActionResult GetAllApplications()
         {
-            List<LoanApplication> list = loanApplicationsService.GetAllApllications();
+            List<LoanApplication> list = loanApplicationsService.GetAllApplications();
             if (list.Any())
             {
                 return Ok(list);
@@ -30,19 +31,19 @@ namespace LoanManagementSystem.API
         [HttpGet("getApplicationByCustomerId/{customerId}")]
         public IActionResult GetApllicationByCustomerId([FromRoute] int customerId)
         {
-            List<LoanApplication> application = loanApplicationsService.GetApllicationByCustomerId(customerId);
-            if(application == null)
+            List<LoanApplication> applications = loanApplicationsService.GetApplicationByCustomerId(customerId);
+            if(applications.Any())
             {
-                return NotFound();
+                return Ok(applications);
             }
 
-            return Ok(application);
+            return NotFound();
         }
 
         [HttpGet("getApplicationByApplicationId/{applicationId}")]
         public IActionResult GetApllicationByApplicationId([FromRoute] int applicationId)
         {
-            LoanApplication application = loanApplicationsService.GetApllicationByApplicationId(applicationId);
+            LoanApplication application = loanApplicationsService.GetApplicationByApplicationId(applicationId);
             if (application == null)
             {
                 return NotFound();

@@ -11,6 +11,11 @@ namespace LoanManagementSystem.API
     {
         private EmiPaymentService emiPaymentService;
 
+        public Payments()
+        {
+            emiPaymentService = new EmiPaymentService();
+        }
+
         [HttpGet("getAllPayments")]
         public IActionResult GetAllPayments()
         {
@@ -26,11 +31,11 @@ namespace LoanManagementSystem.API
         public IActionResult GetPaymentsByCustomerId([FromRoute] int customerId)
         {
             List<EmiPayment> emiPayments = emiPaymentService.GetPaymentsByCustomerId(customerId);
-            if (emiPayments.Any())
+            if (emiPayments == null)
             {
-                return Ok(emiPayments);
+                return NotFound("No payments");
             }
-            return NotFound("No payments");
+            return Ok(emiPayments);
         }
 
         [HttpGet("getPaymentByPaymentId/{paymentId}")]
@@ -45,9 +50,9 @@ namespace LoanManagementSystem.API
         }
 
         [HttpGet("getPaymentsByEmiId/{EmiId}")]
-        public IActionResult GetPaymentsByEmiId([FromRoute] int EmilId)
+        public IActionResult GetPaymentsByEmiId([FromRoute] int EmiId)
         {
-            List<EmiPayment> emiPayment = emiPaymentService.GetPaymentsByEmiId(EmilId);
+            List<EmiPayment> emiPayment = emiPaymentService.GetPaymentsByEmiId(EmiId);
             if (emiPayment.Any())
             {
                 return Ok(emiPayment);

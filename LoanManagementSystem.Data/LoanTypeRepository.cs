@@ -12,7 +12,7 @@ namespace LoanManagementSystem.Data
 
         public Models.LoanType? GetLoanTypebyName(string name)
         {
-            return _dbcontext.LoanTypes.Find(name);
+            return _dbcontext.LoanTypes.FirstOrDefault(loantype => loantype.LoanTypeName == name);
         }
     }
 }

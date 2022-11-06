@@ -14,9 +14,16 @@ namespace LoanManagementSystem.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? IssueDate { get; set; }
-        public decimal? Emiamount { get; set; }
-        public DateTime? PiadOn { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public decimal? EmiAmount { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? PaidOn { get; set; }
         public decimal? Fine { get; set; }
-        public virtual Emi Emi { get; set; }
+        public Emi Emi { get; set; }
+        public int EmiId { get; set; }
     }
 }

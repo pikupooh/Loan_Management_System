@@ -25,134 +25,129 @@ namespace LoanManagementSystem.Data
         public virtual DbSet<LoanApplication> LoanApplications { get; set; }
         public virtual DbSet<LoanType> LoanTypes { get; set; }
 
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server= RIA-THINKPAD\\PROJECTSREMOTE;Database=LMS; User Id= project_remote;pwd= ProjectsRemote@123; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("server=(localdb)\\ProjectModels;Database=LoanManagementSystem;trusted_connection=True;");
             }
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Latin1_General_CI_AS");
+            modelBuilder.Entity<CustomerInfo>().HasData(
+                    new CustomerInfo 
+                    {
+                        Id = 1, 
+                        Custname = "Rohit",
+                        Email = "email@email.com",
+                        Pan = "6846asdf",
+                        Phoneno = "9876543210", 
+                        CustAddress = "address"},
+                    new CustomerInfo
+                    {
+                        Id = 2,
+                        Custname = "Ria",
+                        Email = "email@email.com",
+                        Pan = "6846asdf",
+                        Phoneno = "9876543210",
+                        CustAddress = "address"
+                    }
+                );
 
-            modelBuilder.Entity<BankDetail>(entity =>
-            {
-                entity.HasKey(e => e.BankName)
-                    .HasName("PK_Bank");
+            modelBuilder.Entity<LoanType>().HasData(
+                    new LoanType { 
+                        Id = 1,
+                        LoanTypeName = "Gold_Loan",
+                        InterestRate = 10
+                    },
+                    new LoanType
+                    {
+                        Id = 2,
+                        LoanTypeName = "Home_Loan",
+                        InterestRate = 12
+                    },
+                    new LoanType
+                    {
+                        Id = 3,
+                        LoanTypeName = "Personal_Loan",
+                        InterestRate = 8
+                    }
+                );
 
-                entity.Property(e => e.BankName)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+            modelBuilder.Entity<LoanApplication>().HasData(
+                    new LoanApplication
+                    {
+                        AppId = 1,
+                        CustomerInfoId = 1,
+                        status = LoanStatus.APPLIED,
+                        LoanTypeId = 2,
+                        Amount = 1000000,
+                    },
+                    new LoanApplication
+                    {
+                        AppId = 2,
+                        CustomerInfoId = 1,
+                        status = LoanStatus.APPLIED,
+                        LoanTypeId = 3,
+                        Amount = 100000,
+                    }
+                ) ;
 
-                entity.Property(e => e.BankAddress)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-            });
+            modelBuilder.Entity<Emi>().HasData(
+                    new Emi { 
+                        Id = 1,
+                        Amount = 1000000,
+                        Interest = 10,
+                        LoanTypeId = 1,
+                        CustomerInfoId = 1,
+                        Months = 12,
+                        StartDate = new DateTime(2022, 10, 10)
+                    },
+                    new Emi
+                    {
+                        Id = 2,
+                        Amount = 5000000,
+                        Interest = 10,
+                        LoanTypeId = 1,
+                        CustomerInfoId = 2,
+                        Months = 24,
+                        StartDate = new DateTime(2022, 10, 10)
+                    }
+                );
 
-            modelBuilder.Entity<CustomerInfo>(entity =>
-            {
-                entity.HasKey(e => e.Custid)
-                    .HasName("PK__Customer__049D3E81E80459D9");
-
-                entity.ToTable("CustomerInfo");
-
-                entity.Property(e => e.CustAddress)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Custname)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Email)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Pan)
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
-                    .HasColumnName("PAN");
-
-                entity.Property(e => e.Phoneno)
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<Emi>(entity =>
-            {
-                entity.ToTable("EMI");
-
-                entity.Property(e => e.Emiid).HasColumnName("EMIId");
-
-                entity.Property(e => e.Amount).HasColumnType("decimal(18, 0)");
-
-                entity.Property(e => e.LoanType)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.Emis)
-                    .HasConstraintName("FK__EMI__Custid__2B3F6F97");
-            });
-
-            modelBuilder.Entity<EmiPayment>(entity =>
-            {
-                entity.ToTable("EMIPayments");
-
-                entity.Property(e => e.Emiamount)
-                    .HasColumnType("decimal(18, 0)")
-                    .HasColumnName("EMIAmount");
-
-                entity.Property(e => e.Fine).HasColumnType("decimal(18, 0)");
-
-                entity.Property(e => e.IssueDate).HasColumnType("datetime");
-
-                entity.Property(e => e.PiadOn).HasColumnType("datetime");
-
-                entity.HasOne(d => d.Emi)
-                    .WithMany(p => p.Emipayments)
-                    .HasConstraintName("FK__EMIPaymen__EMIId__2E1BDC42");
-            });
-
-            modelBuilder.Entity<LoanApplication>(entity =>
-            {
-                entity.HasKey(e => e.AppId)
-                    .HasName("PK__LoanAppl__8E2CF7F935191B9F");
-
-                entity.ToTable("LoanApplication");
-
-                entity.Property(e => e.LoanType)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.LoanApplications)
-                    .HasConstraintName("FK__LoanAppli__Custi__286302EC");
-            });
-
-            modelBuilder.Entity<LoanType>(entity =>
-            {
-                entity.HasKey(e => e.LoanTypeName)
-                    .HasName("PK__LoanType__3C62B94646D5B118");
-
-                entity.ToTable("LoanType");
-
-                entity.Property(e => e.LoanTypeName)
-                    .HasMaxLength(25)
-                    .IsUnicode(false)
-                    .HasColumnName("LoanType");
-
-                entity.Property(e => e.InterestRate)
-                    .HasMaxLength(25)
-                    .IsUnicode(false);
-            });
-
-            OnModelCreatingPartial(modelBuilder);
+            modelBuilder.Entity<EmiPayment>().HasData(
+                    new EmiPayment
+                    {
+                        Id = 1,
+                        EmiId = 1,
+                        EmiAmount = 1000000 / 12,
+                        Fine = 0,
+                        IssueDate = new DateTime(2022, 11, 10),
+                        PaidOn = new DateTime(2022, 11, 1)
+                    },
+                    new EmiPayment
+                    {
+                        Id = 2,
+                        EmiId = 1,
+                        EmiAmount = 1000000 / 12,
+                        Fine = 0,
+                        IssueDate = new DateTime(2022, 12, 10),
+                        PaidOn = new DateTime(2022, 12, 1)
+                    },
+                    new EmiPayment
+                    {
+                        Id = 3,
+                        EmiId = 2,
+                        EmiAmount = 5000000 / 24,
+                        Fine = 0,
+                        IssueDate = new DateTime(2022, 12, 10),
+                        PaidOn = new DateTime(2022, 12, 1)
+                    }
+                );
+            
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

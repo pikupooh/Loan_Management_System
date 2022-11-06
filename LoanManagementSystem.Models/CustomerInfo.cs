@@ -15,7 +15,7 @@ namespace LoanManagementSystem.Models
             }
 
             [Key]
-            public int Custid { get; set; }
+            public int Id { get; set; }
             [Required]
             public string Custname { get; set; }
 

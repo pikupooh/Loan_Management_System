@@ -10,12 +10,12 @@ namespace LoanManagementSystem.Data
     public class ProfileRepository:BaseRepository
     {
 
-        public List<Models.CustomerInfo> GetAllProfile()
+        public List<CustomerInfo> GetAllProfiles()
         {
             return _dbcontext.CustomerInfos.ToList();
         }
 
-        public Models.CustomerInfo? GetProfileById(int id)
+        public CustomerInfo? GetProfileById(int id)
         {
             return _dbcontext.CustomerInfos.Find(id);
         }

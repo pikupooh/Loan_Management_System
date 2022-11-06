@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace LoanManagementSystem.Services
 {
@@ -16,21 +17,47 @@ namespace LoanManagementSystem.Services
         {
             loanApplicationRepository = new LoanApplicationRepository();
         }
-        public List<LoanApplication> GetAllApllications()
+        public List<LoanApplication> GetAllApplications()
         {
             List<LoanApplication> loanApplications = loanApplicationRepository.GetApplication();
+
+            ProfileService profileService = new ProfileService();
+
+            foreach(var application in loanApplications) {
+                CustomerInfo customerInfo = profileService.GetProfileById(application.CustomerInfoId);
+                application.Cust = customerInfo;
+            }
+            
+
             return loanApplications;
         }
 
-        public List<LoanApplication> GetApllicationByCustomerId(int Id)
+        public List<LoanApplication> GetApplicationByCustomerId(int Id)
         {
-            List<LoanApplication> applications = loanApplicationRepository.GetApplicationsByCustomerId(Id);
-            return applications;
+            List<LoanApplication> loanApplications = loanApplicationRepository.GetApplicationsByCustomerId(Id);
+            ProfileService profileService = new ProfileService();
+            CustomerInfo customerInfo = profileService.GetProfileById(Id);
+            
+            foreach (var application in loanApplications)
+            {
+                application.Cust = customerInfo;
+            }
+
+            return loanApplications;
         }
 
-        public LoanApplication GetApllicationByApplicationId(int Id)
+        public LoanApplication GetApplicationByApplicationId(int Id)
         {
-            LoanApplication application = loanApplicationRepository.GetApplicationById(Id);
+            LoanApplication? application = loanApplicationRepository.GetApplicationById(Id);
+
+            if(application == null)
+            {
+                return null;
+            }
+
+            ProfileService profileService = new ProfileService();
+            CustomerInfo customerInfo = profileService.GetProfileById(application.CustomerInfoId);
+            application.Cust = customerInfo;
             return application;
         }
 

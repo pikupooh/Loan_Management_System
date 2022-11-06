@@ -25,7 +25,18 @@ namespace LoanManagementSystem.Services
 
         public List<EmiPayment> GetPaymentsByCustomerId(int customerId)
         {
-            List<EmiPayment> emiPayments = emiPaymentRepository.GetPaymentsByCustomerId(customerId);
+            EmiService emiService = new EmiService();
+            List<Emi> emis = emiService.GetEmisByCustomerId(customerId);
+
+            List<EmiPayment> emiPayments = new List<EmiPayment>();
+            foreach (Emi emi in emis)
+            {
+                foreach (var emiPayment in emi.EmiPayments)
+                {
+                    emiPayments.Add(emiPayment);
+                }
+            }
+
             return emiPayments;
         }
 
