@@ -22,7 +22,7 @@ namespace LoanManagementSystem.Models
             Amount = application.Amount;
             EmiCompleted = false;
         }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
 
