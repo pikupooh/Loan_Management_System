@@ -24,15 +24,41 @@ namespace LoanManagementSystem.Data.Migrations
 
             modelBuilder.Entity("LoanManagementSystem.Models.BankDetail", b =>
                 {
-                    b.Property<string>("BankName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BankAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BankName");
+                    b.Property<string>("BankName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("BankDetails");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BankAddress = "Kondapur",
+                            BankName = "Kondapur Branch MyBank"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BankAddress = "Madhapur",
+                            BankName = "Kondapur Branch MyBank"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BankAddress = "Hitech",
+                            BankName = "Kondapur Branch MyBank"
+                        });
                 });
 
             modelBuilder.Entity("LoanManagementSystem.Models.CustomerInfo", b =>
@@ -95,9 +121,11 @@ namespace LoanManagementSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("Amount")
-                        .IsRequired()
-                        .HasColumnType("int");
+                    b.Property<float>("Amount")
+                        .HasColumnType("real");
+
+                    b.Property<float>("AmountTaken")
+                        .HasColumnType("real");
 
                     b.Property<int>("CustomerInfoId")
                         .HasColumnType("int");
@@ -129,7 +157,8 @@ namespace LoanManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Amount = 1000000,
+                            Amount = 1000000f,
+                            AmountTaken = 0f,
                             CustomerInfoId = 1,
                             EmiCompleted = false,
                             Interest = 10f,
@@ -140,7 +169,8 @@ namespace LoanManagementSystem.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Amount = 5000000,
+                            Amount = 5000000f,
+                            AmountTaken = 0f,
                             CustomerInfoId = 2,
                             EmiCompleted = false,
                             Interest = 10f,
@@ -158,19 +188,19 @@ namespace LoanManagementSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal?>("EmiAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("EmiAmount")
+                        .HasColumnType("real");
 
                     b.Property<int>("EmiId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Fine")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("Fine")
+                        .HasColumnType("real");
 
-                    b.Property<DateTime?>("IssueDate")
+                    b.Property<DateTime>("IssueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("PaidOn")
+                    b.Property<DateTime>("PaidOn")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -183,27 +213,27 @@ namespace LoanManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            EmiAmount = 83333m,
+                            EmiAmount = 83333f,
                             EmiId = 1,
-                            Fine = 0m,
+                            Fine = 0f,
                             IssueDate = new DateTime(2022, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PaidOn = new DateTime(2022, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            EmiAmount = 83333m,
+                            EmiAmount = 83333f,
                             EmiId = 1,
-                            Fine = 0m,
+                            Fine = 0f,
                             IssueDate = new DateTime(2022, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PaidOn = new DateTime(2022, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            EmiAmount = 208333m,
+                            EmiAmount = 208333f,
                             EmiId = 2,
-                            Fine = 0m,
+                            Fine = 0f,
                             IssueDate = new DateTime(2022, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PaidOn = new DateTime(2022, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
@@ -211,25 +241,36 @@ namespace LoanManagementSystem.Data.Migrations
 
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>
                 {
-                    b.Property<int>("AppId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Amount")
+                    b.Property<float>("Amount")
+                        .HasColumnType("real");
+
+                    b.Property<int>("BankDetailId")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerInfoId")
                         .HasColumnType("int");
 
+                    b.Property<float>("Interest")
+                        .HasColumnType("real");
+
                     b.Property<int>("LoanTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Months")
                         .HasColumnType("int");
 
                     b.Property<int>("status")
                         .HasColumnType("int");
 
-                    b.HasKey("AppId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("BankDetailId");
 
                     b.HasIndex("CustomerInfoId");
 
@@ -240,18 +281,24 @@ namespace LoanManagementSystem.Data.Migrations
                     b.HasData(
                         new
                         {
-                            AppId = 1,
-                            Amount = 1000000,
+                            Id = 1,
+                            Amount = 1000000f,
+                            BankDetailId = 1,
                             CustomerInfoId = 1,
+                            Interest = 12f,
                             LoanTypeId = 2,
+                            Months = 12,
                             status = 0
                         },
                         new
                         {
-                            AppId = 2,
-                            Amount = 100000,
+                            Id = 2,
+                            Amount = 100000f,
+                            BankDetailId = 2,
                             CustomerInfoId = 1,
+                            Interest = 8f,
                             LoanTypeId = 3,
+                            Months = 24,
                             status = 0
                         });
                 });
@@ -327,6 +374,12 @@ namespace LoanManagementSystem.Data.Migrations
 
             modelBuilder.Entity("LoanManagementSystem.Models.LoanApplication", b =>
                 {
+                    b.HasOne("LoanManagementSystem.Models.BankDetail", "BankDetail")
+                        .WithMany()
+                        .HasForeignKey("BankDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("LoanManagementSystem.Models.CustomerInfo", "Cust")
                         .WithMany("LoanApplications")
                         .HasForeignKey("CustomerInfoId")
@@ -338,6 +391,8 @@ namespace LoanManagementSystem.Data.Migrations
                         .HasForeignKey("LoanTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("BankDetail");
 
                     b.Navigation("Cust");
 

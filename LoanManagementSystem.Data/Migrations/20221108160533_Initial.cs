@@ -13,12 +13,14 @@ namespace LoanManagementSystem.Data.Migrations
                 name: "BankDetails",
                 columns: table => new
                 {
-                    BankName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BankAddress = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BankDetails", x => x.BankName);
+                    table.PrimaryKey("PK_BankDetails", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -58,9 +60,10 @@ namespace LoanManagementSystem.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Amount = table.Column<int>(type: "int", nullable: false),
+                    AmountTaken = table.Column<float>(type: "real", nullable: false),
                     LoanTypeId = table.Column<int>(type: "int", nullable: false),
                     Interest = table.Column<float>(type: "real", nullable: false),
+                    Amount = table.Column<float>(type: "real", nullable: false),
                     CustomerInfoId = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Months = table.Column<int>(type: "int", nullable: false),
@@ -87,16 +90,25 @@ namespace LoanManagementSystem.Data.Migrations
                 name: "LoanApplications",
                 columns: table => new
                 {
-                    AppId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LoanTypeId = table.Column<int>(type: "int", nullable: false),
                     CustomerInfoId = table.Column<int>(type: "int", nullable: false),
                     status = table.Column<int>(type: "int", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false)
+                    Amount = table.Column<float>(type: "real", nullable: false),
+                    Interest = table.Column<float>(type: "real", nullable: false),
+                    Months = table.Column<int>(type: "int", nullable: false),
+                    BankDetailId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LoanApplications", x => x.AppId);
+                    table.PrimaryKey("PK_LoanApplications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_LoanApplications_BankDetails_BankDetailId",
+                        column: x => x.BankDetailId,
+                        principalTable: "BankDetails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_LoanApplications_CustomerInfos_CustomerInfoId",
                         column: x => x.CustomerInfoId,
@@ -117,10 +129,10 @@ namespace LoanManagementSystem.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EmiAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    PaidOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Fine = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmiAmount = table.Column<float>(type: "real", nullable: false),
+                    PaidOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Fine = table.Column<float>(type: "real", nullable: false),
                     EmiId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -132,6 +144,16 @@ namespace LoanManagementSystem.Data.Migrations
                         principalTable: "Emis",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "BankDetails",
+                columns: new[] { "Id", "BankAddress", "BankName" },
+                values: new object[,]
+                {
+                    { 1, "Kondapur", "Kondapur Branch MyBank" },
+                    { 2, "Madhapur", "Kondapur Branch MyBank" },
+                    { 3, "Hitech", "Kondapur Branch MyBank" }
                 });
 
             migrationBuilder.InsertData(
@@ -155,36 +177,36 @@ namespace LoanManagementSystem.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Emis",
-                columns: new[] { "Id", "Amount", "CustomerInfoId", "EmiCompleted", "Interest", "LoanTypeId", "Months", "StartDate" },
+                columns: new[] { "Id", "Amount", "AmountTaken", "CustomerInfoId", "EmiCompleted", "Interest", "LoanTypeId", "Months", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, 1000000, 1, false, 10f, 1, 12, new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 5000000, 2, false, 10f, 1, 24, new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 1000000f, 0f, 1, false, 10f, 1, 12, new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 5000000f, 0f, 2, false, 10f, 1, 24, new DateTime(2022, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "LoanApplications",
-                columns: new[] { "AppId", "Amount", "CustomerInfoId", "LoanTypeId", "status" },
+                columns: new[] { "Id", "Amount", "BankDetailId", "CustomerInfoId", "Interest", "LoanTypeId", "Months", "status" },
                 values: new object[,]
                 {
-                    { 1, 1000000, 1, 2, 0 },
-                    { 2, 100000, 1, 3, 0 }
+                    { 1, 1000000f, 1, 1, 12f, 2, 12, 0 },
+                    { 2, 100000f, 2, 1, 8f, 3, 24, 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Emipayments",
                 columns: new[] { "Id", "EmiAmount", "EmiId", "Fine", "IssueDate", "PaidOn" },
-                values: new object[] { 1, 83333m, 1, 0m, new DateTime(2022, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 1, 83333f, 1, 0f, new DateTime(2022, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Emipayments",
                 columns: new[] { "Id", "EmiAmount", "EmiId", "Fine", "IssueDate", "PaidOn" },
-                values: new object[] { 2, 83333m, 1, 0m, new DateTime(2022, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 2, 83333f, 1, 0f, new DateTime(2022, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.InsertData(
                 table: "Emipayments",
                 columns: new[] { "Id", "EmiAmount", "EmiId", "Fine", "IssueDate", "PaidOn" },
-                values: new object[] { 3, 208333m, 2, 0m, new DateTime(2022, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+                values: new object[] { 3, 208333f, 2, 0f, new DateTime(2022, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2022, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Emipayments_EmiId",
@@ -202,6 +224,11 @@ namespace LoanManagementSystem.Data.Migrations
                 column: "LoanTypeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_LoanApplications_BankDetailId",
+                table: "LoanApplications",
+                column: "BankDetailId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LoanApplications_CustomerInfoId",
                 table: "LoanApplications",
                 column: "CustomerInfoId");
@@ -215,9 +242,6 @@ namespace LoanManagementSystem.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BankDetails");
-
-            migrationBuilder.DropTable(
                 name: "Emipayments");
 
             migrationBuilder.DropTable(
@@ -225,6 +249,9 @@ namespace LoanManagementSystem.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Emis");
+
+            migrationBuilder.DropTable(
+                name: "BankDetails");
 
             migrationBuilder.DropTable(
                 name: "CustomerInfos");
