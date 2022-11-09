@@ -7,22 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public profiles?: GetProfiles[];
 
-  constructor(http: HttpClient) {
-    http.get<GetProfiles[]>('https://localhost:7061/api/Profile/getAllProfiles').subscribe(result => {
-      this.profiles = result;
-      console.log(result);
-    }, error => console.error(error));
+  constructor() {
+    
   }
-
   title = 'LoanManagementSystem.Frontend';
 }
 
-interface GetProfiles {
-  id: number;
-  custname: string;
-  email: string;
-  pan: string,
-  phoneno: string
-}
