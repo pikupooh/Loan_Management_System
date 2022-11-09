@@ -7,20 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
+  public profiles?: GetProfiles[];
 
   constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
+    http.get<GetProfiles[]>('https://localhost:7061/api/Profile/getAllProfiles').subscribe(result => {
+      this.profiles = result;
+      console.log(result);
     }, error => console.error(error));
   }
 
   title = 'LoanManagementSystem.Frontend';
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface GetProfiles {
+  id: number;
+  custname: string;
+  email: string;
+  pan: string,
+  phoneno: string
 }
