@@ -68,7 +68,7 @@ namespace LoanManagementSystem.API.Controllers
 
             var token = _jwtAuthenticationManager.Authenticate(request.Username, request.Role);
 
-            return Ok(token);
+            return Ok(new { Token = token });
         }
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
