@@ -1,24 +1,18 @@
-﻿<h1 id="tableLabel">Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!forecasts"><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationangular">https://aka.ms/jspsintegrationangular</a> for more details.</em></p>
-
-<table *ngIf="forecasts">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.date }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
-        </tr>
-    </tbody>
-</table>
+<h1 id="tableLabel">Loan Management System</h1>
+<app-profile></app-profile>
+<app-profileid></app-profileid>
+<app-getallpayments></app-getallpayments>
+<app-getpaymentsbycustid></app-getpaymentsbycustid>
+<app-getpaymentsbyid></app-getpaymentsbyid>
+<app-getpaymentsbypid></app-getpaymentsbypid>
+<app-allloantypes></app-allloantypes>
+<app-loantypename></app-loantypename>
+<app-allloans></app-allloans>
+<app-loanbycustid></app-loanbycustid>
+<app-loanbylid></app-loanbylid>
+<app-allapplications></app-allapplications>
+<app-allapplicationsbycustid></app-allapplicationsbycustid>
+<app-allapplicationsbyappid></app-allapplicationsbyappid>
+<app-calculateemi></app-calculateemi>
+<app-bankdetails></app-bankdetails>
+<app-bankdetailsbyid></app-bankdetailsbyid>
