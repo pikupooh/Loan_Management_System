@@ -18,7 +18,7 @@ namespace LoanManagementSystem.API.Controllers
         }
 
         // GET: api/<NameController>
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "Admin")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
@@ -47,6 +47,7 @@ namespace LoanManagementSystem.API.Controllers
             user.Username = request.Username;
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
+            user.Role = request.Role;
 
             return Ok(user);
         }
@@ -65,7 +66,7 @@ namespace LoanManagementSystem.API.Controllers
                 return BadRequest("Wrong Password");
             }
 
-            var token = _jwtAuthenticationManager.Authenticate(request.Username);
+            var token = _jwtAuthenticationManager.Authenticate(request.Username, request.Role);
 
             return Ok(token);
         }

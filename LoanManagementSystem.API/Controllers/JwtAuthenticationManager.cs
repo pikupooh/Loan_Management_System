@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -15,7 +16,7 @@ namespace LoanManagementSystem.API.Controllers
         {
             _key = key;
         }
-        public string Authenticate(string username)
+        public string Authenticate(string username, string role)
         {
             //Console.WriteLine("Token Started1");
             //if(!users.Any(u => u.Key == username && u.Value == password))
@@ -29,7 +30,8 @@ namespace LoanManagementSystem.API.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, username)
+                    new Claim(ClaimTypes.Name, username),
+                    new Claim(ClaimTypes.Role, role)
                 }),
 
                 Expires = DateTime.UtcNow.AddHours(1),
