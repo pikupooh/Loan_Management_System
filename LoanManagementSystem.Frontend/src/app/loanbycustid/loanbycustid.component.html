@@ -1,6 +1,6 @@
 <p>loanbycustid works!</p>
 
-<table *ngIf="loan">
+<table *ngIf="loans">
   <thead>
     <tr>
       <th>Id</th>
@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr *ngFor="let loan of loans">
       <td>{{loan.id}}</td>
       <td>{{loan.amountTaken}}</td>
       <td>{{loan.loanType.loanTypeName}}</td>

@@ -8,12 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoanbycustidComponent implements OnInit {
 
-  public loan?: Loans;
+  public loans?: Loans[];
   public id: number = 1;
 
   constructor(http: HttpClient) {
-    http.get<Loans>('https://localhost:7061/api/Loans/getLoanByCustomerId/' + this.id).subscribe(result => {
-      this.loan = result;
+    http.get<Loans[]>('https://localhost:7061/api/Loans/getLoanByCustomerId/' + this.id).subscribe(result => {
+      this.loans = result;
       console.log(result);
     }, error => console.error(error));
   }
